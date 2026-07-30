@@ -1,0 +1,1102 @@
+[
+  {
+    "schemaVersion": "1.0",
+    "preset": {
+      "id": "romcom-cinematic-warm-01",
+      "name": "Warm Rom-Com Cinematic",
+      "description": "Bright, warm and softly contrasted look with creamy highlights, gentle pastel colors, flattering skin tones and slightly lifted blacks.",
+      "category": "cinematic",
+      "tags": [
+        "romcom",
+        "warm",
+        "bright",
+        "soft",
+        "pastel",
+        "romantic"
+      ],
+      "defaultStrength": 0.85
+    },
+    "colorManagement": {
+      "inputColorSpace": "sRGB",
+      "workingColorSpace": "linear-sRGB",
+      "outputColorSpace": "sRGB",
+      "transferFunction": "sRGB",
+      "hdr": false
+    },
+    "basicAdjustments": {
+      "exposure": 0.12,
+      "contrast": -0.08,
+      "brightness": 0.06,
+      "temperature": 0.14,
+      "tint": 0.025,
+      "globalSaturation": -0.04,
+      "vibrance": 0.12
+    },
+    "tone": {
+      "blackPoint": 0.035,
+      "whitePoint": 0.97,
+      "shadowLift": 0.08,
+      "midtoneGain": 0.06,
+      "highlightCompression": 0.12,
+      "highlightRollOff": 0.18,
+      "luminanceCurve": [
+        {
+          "input": 0.0,
+          "output": 0.035
+        },
+        {
+          "input": 0.1,
+          "output": 0.12
+        },
+        {
+          "input": 0.25,
+          "output": 0.28
+        },
+        {
+          "input": 0.5,
+          "output": 0.56
+        },
+        {
+          "input": 0.75,
+          "output": 0.8
+        },
+        {
+          "input": 0.9,
+          "output": 0.93
+        },
+        {
+          "input": 1.0,
+          "output": 0.985
+        }
+      ]
+    },
+    "colorWheels": {
+      "shadows": {
+        "hueDegrees": 215,
+        "saturation": 0.035,
+        "luminance": 0.045
+      },
+      "midtones": {
+        "hueDegrees": 32,
+        "saturation": 0.055,
+        "luminance": 0.04
+      },
+      "highlights": {
+        "hueDegrees": 42,
+        "saturation": 0.075,
+        "luminance": 0.02
+      },
+      "balance": 0.08
+    },
+    "hslAdjustments": {
+      "red": {
+        "hueShiftDegrees": 3,
+        "saturation": 0.03,
+        "luminance": 0.04
+      },
+      "orange": {
+        "hueShiftDegrees": -3,
+        "saturation": 0.06,
+        "luminance": 0.1
+      },
+      "yellow": {
+        "hueShiftDegrees": -7,
+        "saturation": -0.08,
+        "luminance": 0.06
+      },
+      "green": {
+        "hueShiftDegrees": 8,
+        "saturation": -0.18,
+        "luminance": 0.05
+      },
+      "cyan": {
+        "hueShiftDegrees": -5,
+        "saturation": -0.1,
+        "luminance": 0.04
+      },
+      "blue": {
+        "hueShiftDegrees": -4,
+        "saturation": -0.12,
+        "luminance": 0.08
+      },
+      "purple": {
+        "hueShiftDegrees": 4,
+        "saturation": -0.06,
+        "luminance": 0.03
+      },
+      "magenta": {
+        "hueShiftDegrees": -3,
+        "saturation": 0.02,
+        "luminance": 0.05
+      }
+    },
+    "saturationByLuminance": [
+      {
+        "luminance": 0.0,
+        "adjustment": -0.12
+      },
+      {
+        "luminance": 0.2,
+        "adjustment": -0.06
+      },
+      {
+        "luminance": 0.5,
+        "adjustment": 0.04
+      },
+      {
+        "luminance": 0.8,
+        "adjustment": -0.03
+      },
+      {
+        "luminance": 1.0,
+        "adjustment": -0.12
+      }
+    ],
+    "skinToneProtection": {
+      "enabled": true,
+      "targetHueDegrees": 28,
+      "hueRangeDegrees": 24,
+      "minimumSaturation": 0.08,
+      "maximumSaturation": 0.72,
+      "strength": 0.8,
+      "hueShiftDegrees": -1,
+      "saturation": 0.035,
+      "luminance": 0.07
+    },
+    "gamut": {
+      "compression": 0.1,
+      "maximumSaturation": 0.9,
+      "preserveNeutrals": 0.85
+    },
+    "localContrast": {
+      "clarity": -0.08,
+      "midtoneContrast": -0.04,
+      "dehaze": -0.025
+    },
+    "finishing": {
+      "bloom": {
+        "enabled": true,
+        "threshold": 0.78,
+        "intensity": 0.08,
+        "radius": 0.18
+      },
+      "grain": {
+        "enabled": true,
+        "amount": 0.025,
+        "size": 0.35,
+        "roughness": 0.4
+      },
+      "vignette": {
+        "enabled": true,
+        "amount": -0.035,
+        "midpoint": 0.55,
+        "feather": 0.8
+      },
+      "sharpening": {
+        "amount": 0.04,
+        "radius": 0.3
+      }
+    },
+    "semanticRules": {
+      "enabled": true,
+      "skin": {
+        "presetStrength": 0.72,
+        "preserveHue": 0.9,
+        "exposureAdjustment": 0.04
+      },
+      "sky": {
+        "presetStrength": 0.7,
+        "saturationAdjustment": -0.08,
+        "luminanceAdjustment": 0.05
+      },
+      "vegetation": {
+        "presetStrength": 0.75,
+        "saturationAdjustment": -0.14,
+        "luminanceAdjustment": 0.03
+      },
+      "background": {
+        "presetStrength": 0.9
+      }
+    }
+  },
+  {
+    "schemaVersion": "1.0",
+    "preset": {
+      "id": "urban-noir-cool-01",
+      "name": "Cool Urban Noir",
+      "description": "A moody, high-contrast city look with cool shadows, restrained color, controlled highlights and subtle warm skin separation.",
+      "category": "cinematic",
+      "tags": [
+        "urban",
+        "noir",
+        "cool",
+        "moody",
+        "contrast",
+        "night"
+      ],
+      "defaultStrength": 0.8
+    },
+    "colorManagement": {
+      "inputColorSpace": "sRGB",
+      "workingColorSpace": "linear-sRGB",
+      "outputColorSpace": "sRGB",
+      "transferFunction": "sRGB",
+      "hdr": false
+    },
+    "basicAdjustments": {
+      "exposure": -0.04,
+      "contrast": 0.18,
+      "brightness": -0.025,
+      "temperature": -0.14,
+      "tint": -0.015,
+      "globalSaturation": -0.1,
+      "vibrance": 0.045
+    },
+    "tone": {
+      "blackPoint": 0.012,
+      "whitePoint": 0.955,
+      "shadowLift": -0.025,
+      "midtoneGain": -0.015,
+      "highlightCompression": 0.2,
+      "highlightRollOff": 0.24,
+      "luminanceCurve": [
+        {
+          "input": 0.0,
+          "output": 0.008
+        },
+        {
+          "input": 0.1,
+          "output": 0.07
+        },
+        {
+          "input": 0.25,
+          "output": 0.2
+        },
+        {
+          "input": 0.5,
+          "output": 0.48
+        },
+        {
+          "input": 0.75,
+          "output": 0.79
+        },
+        {
+          "input": 0.9,
+          "output": 0.94
+        },
+        {
+          "input": 1.0,
+          "output": 0.985
+        }
+      ]
+    },
+    "colorWheels": {
+      "shadows": {
+        "hueDegrees": 202,
+        "saturation": 0.13,
+        "luminance": -0.035
+      },
+      "midtones": {
+        "hueDegrees": 210,
+        "saturation": 0.045,
+        "luminance": -0.015
+      },
+      "highlights": {
+        "hueDegrees": 38,
+        "saturation": 0.035,
+        "luminance": -0.01
+      },
+      "balance": -0.14
+    },
+    "hslAdjustments": {
+      "red": {
+        "hueShiftDegrees": -2,
+        "saturation": -0.04,
+        "luminance": -0.02
+      },
+      "orange": {
+        "hueShiftDegrees": -4,
+        "saturation": 0.02,
+        "luminance": 0.035
+      },
+      "yellow": {
+        "hueShiftDegrees": -8,
+        "saturation": -0.2,
+        "luminance": -0.02
+      },
+      "green": {
+        "hueShiftDegrees": 12,
+        "saturation": -0.28,
+        "luminance": -0.06
+      },
+      "cyan": {
+        "hueShiftDegrees": -8,
+        "saturation": 0.04,
+        "luminance": -0.04
+      },
+      "blue": {
+        "hueShiftDegrees": -6,
+        "saturation": 0.08,
+        "luminance": -0.07
+      },
+      "purple": {
+        "hueShiftDegrees": -4,
+        "saturation": -0.18,
+        "luminance": -0.04
+      },
+      "magenta": {
+        "hueShiftDegrees": -6,
+        "saturation": -0.16,
+        "luminance": -0.02
+      }
+    },
+    "saturationByLuminance": [
+      {
+        "luminance": 0.0,
+        "adjustment": -0.2
+      },
+      {
+        "luminance": 0.2,
+        "adjustment": -0.1
+      },
+      {
+        "luminance": 0.5,
+        "adjustment": 0.02
+      },
+      {
+        "luminance": 0.8,
+        "adjustment": -0.08
+      },
+      {
+        "luminance": 1.0,
+        "adjustment": -0.2
+      }
+    ],
+    "skinToneProtection": {
+      "enabled": true,
+      "targetHueDegrees": 27,
+      "hueRangeDegrees": 22,
+      "minimumSaturation": 0.08,
+      "maximumSaturation": 0.7,
+      "strength": 0.88,
+      "hueShiftDegrees": -1,
+      "saturation": 0.02,
+      "luminance": 0.035
+    },
+    "gamut": {
+      "compression": 0.16,
+      "maximumSaturation": 0.82,
+      "preserveNeutrals": 0.92
+    },
+    "localContrast": {
+      "clarity": 0.1,
+      "midtoneContrast": 0.12,
+      "dehaze": 0.06
+    },
+    "finishing": {
+      "bloom": {
+        "enabled": true,
+        "threshold": 0.87,
+        "intensity": 0.035,
+        "radius": 0.11
+      },
+      "grain": {
+        "enabled": true,
+        "amount": 0.05,
+        "size": 0.28,
+        "roughness": 0.62
+      },
+      "vignette": {
+        "enabled": true,
+        "amount": -0.12,
+        "midpoint": 0.46,
+        "feather": 0.68
+      },
+      "sharpening": {
+        "amount": 0.075,
+        "radius": 0.24
+      }
+    },
+    "semanticRules": {
+      "enabled": false,
+      "skin": {
+        "presetStrength": 0.65,
+        "preserveHue": 0.94,
+        "exposureAdjustment": 0.02
+      },
+      "sky": {
+        "presetStrength": 0.9,
+        "saturationAdjustment": 0.04,
+        "luminanceAdjustment": -0.05
+      },
+      "vegetation": {
+        "presetStrength": 0.85,
+        "saturationAdjustment": -0.2,
+        "luminanceAdjustment": -0.04
+      },
+      "background": {
+        "presetStrength": 1.0
+      }
+    }
+  },
+  {
+    "schemaVersion": "1.0",
+    "preset": {
+      "id": "golden-hour-film-01",
+      "name": "Golden Hour Film",
+      "description": "A sunlit film-inspired grade with warm highlights, soft contrast, glowing skin and gently subdued greens and blues.",
+      "category": "film",
+      "tags": [
+        "golden-hour",
+        "warm",
+        "film",
+        "sunlit",
+        "travel",
+        "soft"
+      ],
+      "defaultStrength": 0.82
+    },
+    "colorManagement": {
+      "inputColorSpace": "sRGB",
+      "workingColorSpace": "linear-sRGB",
+      "outputColorSpace": "sRGB",
+      "transferFunction": "sRGB",
+      "hdr": false
+    },
+    "basicAdjustments": {
+      "exposure": 0.08,
+      "contrast": -0.025,
+      "brightness": 0.035,
+      "temperature": 0.22,
+      "tint": 0.018,
+      "globalSaturation": 0.015,
+      "vibrance": 0.1
+    },
+    "tone": {
+      "blackPoint": 0.028,
+      "whitePoint": 0.965,
+      "shadowLift": 0.055,
+      "midtoneGain": 0.045,
+      "highlightCompression": 0.16,
+      "highlightRollOff": 0.22,
+      "luminanceCurve": [
+        {
+          "input": 0.0,
+          "output": 0.028
+        },
+        {
+          "input": 0.1,
+          "output": 0.115
+        },
+        {
+          "input": 0.25,
+          "output": 0.275
+        },
+        {
+          "input": 0.5,
+          "output": 0.55
+        },
+        {
+          "input": 0.75,
+          "output": 0.81
+        },
+        {
+          "input": 0.9,
+          "output": 0.945
+        },
+        {
+          "input": 1.0,
+          "output": 0.986
+        }
+      ]
+    },
+    "colorWheels": {
+      "shadows": {
+        "hueDegrees": 205,
+        "saturation": 0.03,
+        "luminance": 0.025
+      },
+      "midtones": {
+        "hueDegrees": 31,
+        "saturation": 0.075,
+        "luminance": 0.045
+      },
+      "highlights": {
+        "hueDegrees": 48,
+        "saturation": 0.11,
+        "luminance": 0.035
+      },
+      "balance": 0.16
+    },
+    "hslAdjustments": {
+      "red": {
+        "hueShiftDegrees": 2,
+        "saturation": 0.035,
+        "luminance": 0.045
+      },
+      "orange": {
+        "hueShiftDegrees": -4,
+        "saturation": 0.09,
+        "luminance": 0.095
+      },
+      "yellow": {
+        "hueShiftDegrees": -10,
+        "saturation": 0.02,
+        "luminance": 0.07
+      },
+      "green": {
+        "hueShiftDegrees": 10,
+        "saturation": -0.22,
+        "luminance": 0.025
+      },
+      "cyan": {
+        "hueShiftDegrees": -6,
+        "saturation": -0.14,
+        "luminance": 0.02
+      },
+      "blue": {
+        "hueShiftDegrees": -8,
+        "saturation": -0.18,
+        "luminance": 0.055
+      },
+      "purple": {
+        "hueShiftDegrees": 2,
+        "saturation": -0.1,
+        "luminance": 0.025
+      },
+      "magenta": {
+        "hueShiftDegrees": -2,
+        "saturation": -0.04,
+        "luminance": 0.035
+      }
+    },
+    "saturationByLuminance": [
+      {
+        "luminance": 0.0,
+        "adjustment": -0.1
+      },
+      {
+        "luminance": 0.2,
+        "adjustment": -0.04
+      },
+      {
+        "luminance": 0.5,
+        "adjustment": 0.06
+      },
+      {
+        "luminance": 0.8,
+        "adjustment": 0.015
+      },
+      {
+        "luminance": 1.0,
+        "adjustment": -0.1
+      }
+    ],
+    "skinToneProtection": {
+      "enabled": true,
+      "targetHueDegrees": 29,
+      "hueRangeDegrees": 25,
+      "minimumSaturation": 0.07,
+      "maximumSaturation": 0.75,
+      "strength": 0.84,
+      "hueShiftDegrees": -2,
+      "saturation": 0.05,
+      "luminance": 0.075
+    },
+    "gamut": {
+      "compression": 0.12,
+      "maximumSaturation": 0.92,
+      "preserveNeutrals": 0.84
+    },
+    "localContrast": {
+      "clarity": -0.055,
+      "midtoneContrast": -0.02,
+      "dehaze": -0.018
+    },
+    "finishing": {
+      "bloom": {
+        "enabled": true,
+        "threshold": 0.74,
+        "intensity": 0.11,
+        "radius": 0.22
+      },
+      "grain": {
+        "enabled": true,
+        "amount": 0.04,
+        "size": 0.38,
+        "roughness": 0.48
+      },
+      "vignette": {
+        "enabled": true,
+        "amount": -0.055,
+        "midpoint": 0.57,
+        "feather": 0.82
+      },
+      "sharpening": {
+        "amount": 0.035,
+        "radius": 0.32
+      }
+    },
+    "semanticRules": {
+      "enabled": false,
+      "skin": {
+        "presetStrength": 0.76,
+        "preserveHue": 0.9,
+        "exposureAdjustment": 0.05
+      },
+      "sky": {
+        "presetStrength": 0.7,
+        "saturationAdjustment": -0.1,
+        "luminanceAdjustment": 0.04
+      },
+      "vegetation": {
+        "presetStrength": 0.72,
+        "saturationAdjustment": -0.16,
+        "luminanceAdjustment": 0.02
+      },
+      "background": {
+        "presetStrength": 0.9
+      }
+    }
+  },
+  {
+    "schemaVersion": "1.0",
+    "preset": {
+      "id": "muted-indie-film-01",
+      "name": "Muted Indie Film",
+      "description": "A restrained, low-saturation grade with lifted blacks, soft highlights, gentle texture and understated color separation.",
+      "category": "film",
+      "tags": [
+        "indie",
+        "muted",
+        "soft",
+        "matte",
+        "editorial",
+        "film"
+      ],
+      "defaultStrength": 0.78
+    },
+    "colorManagement": {
+      "inputColorSpace": "sRGB",
+      "workingColorSpace": "linear-sRGB",
+      "outputColorSpace": "sRGB",
+      "transferFunction": "sRGB",
+      "hdr": false
+    },
+    "basicAdjustments": {
+      "exposure": -0.015,
+      "contrast": -0.07,
+      "brightness": 0.015,
+      "temperature": -0.025,
+      "tint": 0.012,
+      "globalSaturation": -0.19,
+      "vibrance": 0.025
+    },
+    "tone": {
+      "blackPoint": 0.062,
+      "whitePoint": 0.95,
+      "shadowLift": 0.1,
+      "midtoneGain": 0.005,
+      "highlightCompression": 0.2,
+      "highlightRollOff": 0.28,
+      "luminanceCurve": [
+        {
+          "input": 0.0,
+          "output": 0.062
+        },
+        {
+          "input": 0.1,
+          "output": 0.135
+        },
+        {
+          "input": 0.25,
+          "output": 0.27
+        },
+        {
+          "input": 0.5,
+          "output": 0.515
+        },
+        {
+          "input": 0.75,
+          "output": 0.765
+        },
+        {
+          "input": 0.9,
+          "output": 0.905
+        },
+        {
+          "input": 1.0,
+          "output": 0.965
+        }
+      ]
+    },
+    "colorWheels": {
+      "shadows": {
+        "hueDegrees": 194,
+        "saturation": 0.05,
+        "luminance": 0.055
+      },
+      "midtones": {
+        "hueDegrees": 28,
+        "saturation": 0.025,
+        "luminance": 0.005
+      },
+      "highlights": {
+        "hueDegrees": 44,
+        "saturation": 0.035,
+        "luminance": -0.005
+      },
+      "balance": -0.02
+    },
+    "hslAdjustments": {
+      "red": {
+        "hueShiftDegrees": 1,
+        "saturation": -0.08,
+        "luminance": 0.015
+      },
+      "orange": {
+        "hueShiftDegrees": -2,
+        "saturation": -0.03,
+        "luminance": 0.05
+      },
+      "yellow": {
+        "hueShiftDegrees": -6,
+        "saturation": -0.18,
+        "luminance": 0.025
+      },
+      "green": {
+        "hueShiftDegrees": 7,
+        "saturation": -0.32,
+        "luminance": 0.01
+      },
+      "cyan": {
+        "hueShiftDegrees": -4,
+        "saturation": -0.22,
+        "luminance": 0.02
+      },
+      "blue": {
+        "hueShiftDegrees": -3,
+        "saturation": -0.2,
+        "luminance": 0.03
+      },
+      "purple": {
+        "hueShiftDegrees": 2,
+        "saturation": -0.2,
+        "luminance": 0.015
+      },
+      "magenta": {
+        "hueShiftDegrees": -2,
+        "saturation": -0.18,
+        "luminance": 0.02
+      }
+    },
+    "saturationByLuminance": [
+      {
+        "luminance": 0.0,
+        "adjustment": -0.18
+      },
+      {
+        "luminance": 0.2,
+        "adjustment": -0.1
+      },
+      {
+        "luminance": 0.5,
+        "adjustment": -0.04
+      },
+      {
+        "luminance": 0.8,
+        "adjustment": -0.08
+      },
+      {
+        "luminance": 1.0,
+        "adjustment": -0.18
+      }
+    ],
+    "skinToneProtection": {
+      "enabled": true,
+      "targetHueDegrees": 28,
+      "hueRangeDegrees": 23,
+      "minimumSaturation": 0.07,
+      "maximumSaturation": 0.68,
+      "strength": 0.76,
+      "hueShiftDegrees": 0,
+      "saturation": -0.02,
+      "luminance": 0.045
+    },
+    "gamut": {
+      "compression": 0.18,
+      "maximumSaturation": 0.76,
+      "preserveNeutrals": 0.9
+    },
+    "localContrast": {
+      "clarity": -0.04,
+      "midtoneContrast": -0.055,
+      "dehaze": -0.015
+    },
+    "finishing": {
+      "bloom": {
+        "enabled": true,
+        "threshold": 0.8,
+        "intensity": 0.055,
+        "radius": 0.17
+      },
+      "grain": {
+        "enabled": true,
+        "amount": 0.07,
+        "size": 0.42,
+        "roughness": 0.68
+      },
+      "vignette": {
+        "enabled": true,
+        "amount": -0.065,
+        "midpoint": 0.52,
+        "feather": 0.78
+      },
+      "sharpening": {
+        "amount": 0.025,
+        "radius": 0.34
+      }
+    },
+    "semanticRules": {
+      "enabled": false,
+      "skin": {
+        "presetStrength": 0.72,
+        "preserveHue": 0.93,
+        "exposureAdjustment": 0.02
+      },
+      "sky": {
+        "presetStrength": 0.78,
+        "saturationAdjustment": -0.14,
+        "luminanceAdjustment": 0.02
+      },
+      "vegetation": {
+        "presetStrength": 0.8,
+        "saturationAdjustment": -0.22,
+        "luminanceAdjustment": 0.0
+      },
+      "background": {
+        "presetStrength": 0.88
+      }
+    }
+  },
+  {
+    "schemaVersion": "1.0",
+    "preset": {
+      "id": "clean-editorial-neutral-01",
+      "name": "Clean Editorial Neutral",
+      "description": "A polished, modern grade with crisp tonal separation, neutral whites, controlled saturation and clean detail.",
+      "category": "editorial",
+      "tags": [
+        "clean",
+        "neutral",
+        "editorial",
+        "crisp",
+        "modern",
+        "commercial"
+      ],
+      "defaultStrength": 0.75
+    },
+    "colorManagement": {
+      "inputColorSpace": "sRGB",
+      "workingColorSpace": "linear-sRGB",
+      "outputColorSpace": "sRGB",
+      "transferFunction": "sRGB",
+      "hdr": false
+    },
+    "basicAdjustments": {
+      "exposure": 0.055,
+      "contrast": 0.095,
+      "brightness": 0.02,
+      "temperature": 0.018,
+      "tint": 0.006,
+      "globalSaturation": -0.025,
+      "vibrance": 0.055
+    },
+    "tone": {
+      "blackPoint": 0.014,
+      "whitePoint": 0.988,
+      "shadowLift": 0.012,
+      "midtoneGain": 0.035,
+      "highlightCompression": 0.08,
+      "highlightRollOff": 0.13,
+      "luminanceCurve": [
+        {
+          "input": 0.0,
+          "output": 0.012
+        },
+        {
+          "input": 0.1,
+          "output": 0.085
+        },
+        {
+          "input": 0.25,
+          "output": 0.235
+        },
+        {
+          "input": 0.5,
+          "output": 0.515
+        },
+        {
+          "input": 0.75,
+          "output": 0.785
+        },
+        {
+          "input": 0.9,
+          "output": 0.93
+        },
+        {
+          "input": 1.0,
+          "output": 0.995
+        }
+      ]
+    },
+    "colorWheels": {
+      "shadows": {
+        "hueDegrees": 214,
+        "saturation": 0.018,
+        "luminance": 0.005
+      },
+      "midtones": {
+        "hueDegrees": 30,
+        "saturation": 0.014,
+        "luminance": 0.02
+      },
+      "highlights": {
+        "hueDegrees": 43,
+        "saturation": 0.018,
+        "luminance": 0.012
+      },
+      "balance": 0.015
+    },
+    "hslAdjustments": {
+      "red": {
+        "hueShiftDegrees": 1,
+        "saturation": 0.015,
+        "luminance": 0.015
+      },
+      "orange": {
+        "hueShiftDegrees": -1,
+        "saturation": 0.025,
+        "luminance": 0.045
+      },
+      "yellow": {
+        "hueShiftDegrees": -3,
+        "saturation": -0.045,
+        "luminance": 0.025
+      },
+      "green": {
+        "hueShiftDegrees": 3,
+        "saturation": -0.08,
+        "luminance": 0.015
+      },
+      "cyan": {
+        "hueShiftDegrees": -2,
+        "saturation": -0.04,
+        "luminance": 0.012
+      },
+      "blue": {
+        "hueShiftDegrees": -2,
+        "saturation": -0.045,
+        "luminance": 0.025
+      },
+      "purple": {
+        "hueShiftDegrees": 1,
+        "saturation": -0.035,
+        "luminance": 0.012
+      },
+      "magenta": {
+        "hueShiftDegrees": -1,
+        "saturation": -0.025,
+        "luminance": 0.018
+      }
+    },
+    "saturationByLuminance": [
+      {
+        "luminance": 0.0,
+        "adjustment": -0.08
+      },
+      {
+        "luminance": 0.2,
+        "adjustment": -0.02
+      },
+      {
+        "luminance": 0.5,
+        "adjustment": 0.025
+      },
+      {
+        "luminance": 0.8,
+        "adjustment": -0.01
+      },
+      {
+        "luminance": 1.0,
+        "adjustment": -0.07
+      }
+    ],
+    "skinToneProtection": {
+      "enabled": true,
+      "targetHueDegrees": 28,
+      "hueRangeDegrees": 22,
+      "minimumSaturation": 0.07,
+      "maximumSaturation": 0.72,
+      "strength": 0.9,
+      "hueShiftDegrees": 0,
+      "saturation": 0.018,
+      "luminance": 0.045
+    },
+    "gamut": {
+      "compression": 0.08,
+      "maximumSaturation": 0.9,
+      "preserveNeutrals": 0.96
+    },
+    "localContrast": {
+      "clarity": 0.055,
+      "midtoneContrast": 0.065,
+      "dehaze": 0.015
+    },
+    "finishing": {
+      "bloom": {
+        "enabled": false,
+        "threshold": 0.86,
+        "intensity": 0.0,
+        "radius": 0.1
+      },
+      "grain": {
+        "enabled": true,
+        "amount": 0.012,
+        "size": 0.22,
+        "roughness": 0.3
+      },
+      "vignette": {
+        "enabled": true,
+        "amount": -0.018,
+        "midpoint": 0.62,
+        "feather": 0.9
+      },
+      "sharpening": {
+        "amount": 0.09,
+        "radius": 0.22
+      }
+    },
+    "semanticRules": {
+      "enabled": false,
+      "skin": {
+        "presetStrength": 0.82,
+        "preserveHue": 0.96,
+        "exposureAdjustment": 0.03
+      },
+      "sky": {
+        "presetStrength": 0.86,
+        "saturationAdjustment": -0.025,
+        "luminanceAdjustment": 0.02
+      },
+      "vegetation": {
+        "presetStrength": 0.88,
+        "saturationAdjustment": -0.06,
+        "luminanceAdjustment": 0.015
+      },
+      "background": {
+        "presetStrength": 0.94
+      }
+    }
+  }
+]
