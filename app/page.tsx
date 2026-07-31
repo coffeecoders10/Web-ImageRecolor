@@ -26,7 +26,7 @@ export default function Home() {
 
   const [sourcePalette, setSourcePalette] = useState<ExtractedColor[]>([]);
   const [selectedPalette, setSelectedPalette] = useState<PredefinedPalette | null>(null);
-  const [strength, setStrength] = useState(85);
+  const [strength, setStrength] = useState(100);
 
   const [resultSrc, setResultSrc] = useState<string | null>(null);
   const resultCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -45,7 +45,7 @@ export default function Home() {
     setImageEl(null);
     setSourcePalette([]);
     setSelectedPalette(null);
-    setStrength(85);
+    setStrength(100);
     setResultSrc(null);
     resultCanvasRef.current = null;
     setShowBefore(false);
@@ -169,8 +169,7 @@ export default function Home() {
       )}
 
       <main className={styles.workspace}>
-        <section className={styles.column} aria-label="Upload">
-          <h2 className={styles.columnTitle}>Upload</h2>
+        <section className={styles.imageColumn} aria-label="Image">
           {isLoadingImage ? (
             <div className={styles.loadingPane} role="status" aria-live="polite">
               <span className={styles.spinner} aria-hidden="true" />
@@ -180,7 +179,24 @@ export default function Home() {
             <ImageUploader onImageSelected={handleImageSelected} onError={handleError} />
           ) : (
             <>
-              <ImagePreview src={originalSrc} alt="Original upload" />
+              <div className={styles.resultFrame}>
+                <ImagePreview
+                  src={showBefore ? originalSrc : resultSrc ?? originalSrc}
+                  alt={showBefore ? "Original image" : "Recolored result"}
+                  placeholderLabel={isProcessing ? "Rendering…" : "Result will appear here"}
+                />
+                {isProcessing && (
+                  <div className={styles.processingOverlay} role="status" aria-live="polite">
+                    <span className={styles.spinner} aria-hidden="true" />
+                    <span>Recoloring…</span>
+                  </div>
+                )}
+              </div>
+              {isProcessing && <div className={styles.progressBar} aria-hidden="true" />}
+              <div className={styles.resultControls}>
+                <BeforeAfterToggle showBefore={showBefore} onChange={setShowBefore} disabled={isProcessing || !resultSrc} />
+                <DownloadButton onDownload={handleDownload} onReset={resetAll} disabled={!hasResult} />
+              </div>
               <ExtractedPalette colors={sourcePalette} />
             </>
           )}
@@ -206,30 +222,6 @@ export default function Home() {
               </ol>
             </div>
           )}
-        </section>
-
-        <section className={styles.column} aria-label="Result">
-          <h2 className={styles.columnTitle}>Result</h2>
-          <div className={styles.resultFrame}>
-            <ImagePreview
-              src={showBefore ? originalSrc : resultSrc ?? originalSrc}
-              alt={showBefore ? "Original image" : "Recolored result"}
-              placeholderLabel={isProcessing ? "Rendering…" : "Result will appear here"}
-            />
-            {isProcessing && (
-              <div className={styles.processingOverlay} role="status" aria-live="polite">
-                <span className={styles.spinner} aria-hidden="true" />
-                <span>Recoloring…</span>
-              </div>
-            )}
-          </div>
-          {isProcessing && <div className={styles.progressBar} aria-hidden="true" />}
-          {resultSrc && (
-            <div className={styles.resultControls}>
-              <BeforeAfterToggle showBefore={showBefore} onChange={setShowBefore} disabled={isProcessing} />
-            </div>
-          )}
-          <DownloadButton onDownload={handleDownload} onReset={resetAll} disabled={!hasResult} />
         </section>
       </main>
     </div>

@@ -1,7 +1,6 @@
 .row {
   display: flex;
   gap: 8px;
-  margin-top: 14px;
 }
 
 .download {
