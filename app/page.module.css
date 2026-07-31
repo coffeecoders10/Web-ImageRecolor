@@ -69,6 +69,10 @@
   padding-right: 4px;
 }
 
+.imageColumn {
+  overflow: hidden;
+}
+
 .columnTitle {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 600;
@@ -154,42 +158,33 @@
 
 .resultFrame {
   position: relative;
-}
-
-.processingOverlay {
-  position: absolute;
-  inset: 0;
+  flex: 1;
+  min-height: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
-  backdrop-filter: blur(2px);
-  color: var(--text-primary);
+}
+
+.applyStrengthButton {
+  font-family: inherit;
   font-size: 13px;
-  font-weight: 500;
-  pointer-events: none;
-}
-
-.progressBar {
-  height: 2px;
-  margin-top: 8px;
+  font-weight: 600;
+  padding: 10px 16px;
+  margin-top: 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent));
-  background-size: 200% 100%;
-  animation: shimmer 1.1s ease-in-out infinite;
-  flex-shrink: 0;
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: var(--surface);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  align-self: flex-start;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+.applyStrengthButton:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.applyStrengthButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .resultControls {

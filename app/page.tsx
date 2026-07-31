@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import styles from "./page.module.css";
 import ImageUploader from "@/components/ImageUploader";
 import ImagePreview from "@/components/ImagePreview";
@@ -9,12 +9,22 @@ import PaletteSelector from "@/components/PaletteSelector";
 import StrengthSlider from "@/components/StrengthSlider";
 import BeforeAfterToggle from "@/components/BeforeAfterToggle";
 import DownloadButton from "@/components/DownloadButton";
+import ProcessingModal from "@/components/ProcessingModal";
 import { extractPalette, ExtractedColor } from "@/lib/paletteExtraction";
 import { recolorImage } from "@/lib/recolorImage";
 import { downloadCanvas } from "@/lib/exportImage";
 import { PredefinedPalette } from "@/data/predefinedPalettes";
 
 type AppStatus = "empty" | "loading" | "ready" | "processing" | "completed" | "error";
+
+// Resolves after the browser has painted the current frame, so a
+// `setStatus("processing")` triggered just before a long synchronous
+// computation is guaranteed to be visible before that computation starts.
+function waitForPaint(): Promise<void> {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  });
+}
 
 export default function Home() {
   const [status, setStatus] = useState<AppStatus>("empty");
@@ -97,6 +107,7 @@ export default function Home() {
       console.log(`[page] runRecolor start (token=${token}) palette=${palette.id} strength=${strengthValue}`);
       setStatus("processing");
       setErrorMessage(null);
+      await waitForPaint();
       const t0 = performance.now();
       try {
         const result = await recolorImage(imageEl, palette, {
@@ -131,15 +142,10 @@ export default function Home() {
     [runRecolor, strength]
   );
 
-  // Debounce re-processing while the user drags the strength slider.
-  useEffect(() => {
+  const handleApplyStrength = useCallback(() => {
     if (!selectedPalette) return;
-    const handle = setTimeout(() => {
-      void runRecolor(selectedPalette, strength);
-    }, 200);
-    return () => clearTimeout(handle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [strength]);
+    void runRecolor(selectedPalette, strength);
+  }, [runRecolor, selectedPalette, strength]);
 
   const handleDownload = useCallback(() => {
     if (!resultCanvasRef.current || !originalFile || !selectedPalette) return;
@@ -185,14 +191,7 @@ export default function Home() {
                   alt={showBefore ? "Original image" : "Recolored result"}
                   placeholderLabel={isProcessing ? "Rendering…" : "Result will appear here"}
                 />
-                {isProcessing && (
-                  <div className={styles.processingOverlay} role="status" aria-live="polite">
-                    <span className={styles.spinner} aria-hidden="true" />
-                    <span>Recoloring…</span>
-                  </div>
-                )}
               </div>
-              {isProcessing && <div className={styles.progressBar} aria-hidden="true" />}
               <div className={styles.resultControls}>
                 <BeforeAfterToggle showBefore={showBefore} onChange={setShowBefore} disabled={isProcessing || !resultSrc} />
                 <DownloadButton onDownload={handleDownload} onReset={resetAll} disabled={!hasResult} />
@@ -212,6 +211,14 @@ export default function Home() {
                 disabled={isProcessing}
               />
               <StrengthSlider value={strength} onChange={setStrength} disabled={isProcessing || !selectedPalette} />
+              <button
+                type="button"
+                className={styles.applyStrengthButton}
+                onClick={handleApplyStrength}
+                disabled={isProcessing || !selectedPalette}
+              >
+                Apply Strength
+              </button>
             </>
           ) : (
             <div className={styles.emptyHint}>
@@ -224,6 +231,8 @@ export default function Home() {
           )}
         </section>
       </main>
+
+      {isProcessing && <ProcessingModal />}
     </div>
   );
 }

@@ -67,12 +67,21 @@ function getAnalysisImageData(image: HTMLImageElement | ImageBitmap): ImageData 
 }
 
 function sampleImageData(imageData: ImageData): Sample[] {
-  const { data } = imageData;
+  const { width, height, data } = imageData;
+
+  // Cap the number of pixels fed into median-cut/k-means clustering for
+  // speed; stride evenly across the image rather than decoding a
+  // canvas-downscaled copy (keeps this DOM-free so it works in a worker).
+  const pixelCount = width * height;
+  const maxSamples = ANALYSIS_MAX_DIM * ANALYSIS_MAX_DIM;
+  const stride = Math.max(1, Math.floor(pixelCount / maxSamples));
+
   const samples: Sample[] = [];
-  for (let i = 0; i < data.length; i += 4) {
-    const alpha = data[i + 3];
+  for (let i = 0; i < pixelCount; i += stride) {
+    const p = i * 4;
+    const alpha = data[p + 3];
     if (alpha < 16) continue; // skip fully/mostly transparent pixels
-    const rgb: RGB = { r: data[i], g: data[i + 1], b: data[i + 2] };
+    const rgb: RGB = { r: data[p], g: data[p + 1], b: data[p + 2] };
     samples.push({ rgb, oklab: rgbToOklab(rgb) });
   }
   return samples;
@@ -189,6 +198,15 @@ export function extractPalette(
   targetCount = 8
 ): ExtractedColor[] {
   const imageData = getAnalysisImageData(image);
+  return extractPaletteFromImageData(imageData, targetCount);
+}
+
+// DOM-free variant that works directly on already-decoded ImageData, so it
+// can run inside a Web Worker (no canvas/document access).
+export function extractPaletteFromImageData(
+  imageData: ImageData,
+  targetCount = 8
+): ExtractedColor[] {
   const samples = sampleImageData(imageData);
   if (samples.length === 0) return [];
 
