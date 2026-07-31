@@ -77,6 +77,36 @@
   flex-shrink: 0;
 }
 
+.loadingPane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2.5px solid var(--border-color);
+  border-top-color: var(--accent);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .emptyHint {
   display: flex;
   align-items: center;
@@ -119,6 +149,27 @@
   font-weight: 600;
   color: var(--text-primary);
   flex-shrink: 0;
+}
+
+.resultFrame {
+  position: relative;
+}
+
+.processingOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  backdrop-filter: blur(2px);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  pointer-events: none;
 }
 
 .progressBar {

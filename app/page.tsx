@@ -14,7 +14,7 @@ import { recolorImage } from "@/lib/recolorImage";
 import { downloadCanvas } from "@/lib/exportImage";
 import { PredefinedPalette } from "@/data/predefinedPalettes";
 
-type AppStatus = "empty" | "ready" | "processing" | "completed" | "error";
+type AppStatus = "empty" | "loading" | "ready" | "processing" | "completed" | "error";
 
 export default function Home() {
   const [status, setStatus] = useState<AppStatus>("empty");
@@ -52,22 +52,29 @@ export default function Home() {
   }, []);
 
   const handleImageSelected = useCallback((file: File) => {
+    console.log(`[page] file selected: ${file.name} (${file.type}, ${(file.size / 1024).toFixed(0)}KB)`);
     setErrorMessage(null);
+    setStatus("loading");
     const url = URL.createObjectURL(file);
     const img = new Image();
     img.onload = () => {
+      console.log(`[page] image decoded: ${img.naturalWidth}x${img.naturalHeight}`);
       setOriginalFile(file);
       setOriginalSrc(url);
       setImageEl(img);
       setStatus("ready");
       try {
+        const t0 = performance.now();
         const palette = extractPalette(img, 8);
+        console.log(`[page] initial extractPalette: ${(performance.now() - t0).toFixed(0)}ms, ${palette.length} colors`);
         setSourcePalette(palette);
-      } catch {
+      } catch (err) {
+        console.error("[page] extractPalette failed", err);
         setSourcePalette([]);
       }
     };
-    img.onerror = () => {
+    img.onerror = (err) => {
+      console.error("[page] image decode failed", err);
       URL.revokeObjectURL(url);
       setStatus("error");
       setErrorMessage("Failed to decode this image. Please try a different file.");
@@ -82,20 +89,31 @@ export default function Home() {
 
   const runRecolor = useCallback(
     async (palette: PredefinedPalette, strengthValue: number) => {
-      if (!imageEl) return;
+      if (!imageEl) {
+        console.warn("[page] runRecolor called with no imageEl, skipping");
+        return;
+      }
       const token = ++processingTokenRef.current;
+      console.log(`[page] runRecolor start (token=${token}) palette=${palette.id} strength=${strengthValue}`);
       setStatus("processing");
       setErrorMessage(null);
+      const t0 = performance.now();
       try {
         const result = await recolorImage(imageEl, palette, {
           strength: strengthValue / 100,
         });
-        if (processingTokenRef.current !== token) return; // superseded by a newer run
+        console.log(`[page] runRecolor (token=${token}) recolorImage resolved in ${(performance.now() - t0).toFixed(0)}ms`);
+        if (processingTokenRef.current !== token) {
+          console.log(`[page] runRecolor (token=${token}) superseded by token=${processingTokenRef.current}, discarding`);
+          return;
+        }
         resultCanvasRef.current = result.canvas;
         setResultSrc(result.canvas.toDataURL());
         setStatus("completed");
         setShowBefore(false);
-      } catch {
+        console.log(`[page] runRecolor (token=${token}) completed, total ${(performance.now() - t0).toFixed(0)}ms`);
+      } catch (err) {
+        console.error(`[page] runRecolor (token=${token}) failed`, err);
         if (processingTokenRef.current !== token) return;
         setStatus("error");
         setErrorMessage("Processing failed. Your browser may be low on memory — try a smaller image.");
@@ -106,6 +124,7 @@ export default function Home() {
 
   const handlePaletteSelect = useCallback(
     (palette: PredefinedPalette) => {
+      console.log(`[page] palette selected: ${palette.id}`);
       setSelectedPalette(palette);
       void runRecolor(palette, strength);
     },
@@ -127,6 +146,7 @@ export default function Home() {
     downloadCanvas(resultCanvasRef.current, originalFile.name, selectedPalette.name);
   }, [originalFile, selectedPalette]);
 
+  const isLoadingImage = status === "loading";
   const isProcessing = status === "processing";
   const hasResult = status === "completed" && resultSrc;
 
@@ -151,7 +171,12 @@ export default function Home() {
       <main className={styles.workspace}>
         <section className={styles.column} aria-label="Upload">
           <h2 className={styles.columnTitle}>Upload</h2>
-          {!originalSrc ? (
+          {isLoadingImage ? (
+            <div className={styles.loadingPane} role="status" aria-live="polite">
+              <span className={styles.spinner} aria-hidden="true" />
+              <span>Reading image…</span>
+            </div>
+          ) : !originalSrc ? (
             <ImageUploader onImageSelected={handleImageSelected} onError={handleError} />
           ) : (
             <>
@@ -185,11 +210,19 @@ export default function Home() {
 
         <section className={styles.column} aria-label="Result">
           <h2 className={styles.columnTitle}>Result</h2>
-          <ImagePreview
-            src={showBefore ? originalSrc : resultSrc ?? originalSrc}
-            alt={showBefore ? "Original image" : "Recolored result"}
-            placeholderLabel={isProcessing ? "Rendering…" : "Result will appear here"}
-          />
+          <div className={styles.resultFrame}>
+            <ImagePreview
+              src={showBefore ? originalSrc : resultSrc ?? originalSrc}
+              alt={showBefore ? "Original image" : "Recolored result"}
+              placeholderLabel={isProcessing ? "Rendering…" : "Result will appear here"}
+            />
+            {isProcessing && (
+              <div className={styles.processingOverlay} role="status" aria-live="polite">
+                <span className={styles.spinner} aria-hidden="true" />
+                <span>Recoloring…</span>
+              </div>
+            )}
+          </div>
           {isProcessing && <div className={styles.progressBar} aria-hidden="true" />}
           {resultSrc && (
             <div className={styles.resultControls}>

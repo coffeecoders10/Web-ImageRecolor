@@ -14,12 +14,12 @@ export type RegionType =
 
 // Per-region recolor strength multiplier applied on top of the global strength.
 export const REGION_STRENGTH: Record<RegionType, number> = {
-  skin: 0.28, // subtle temperature-only adjustment
-  neutral: 0.15, // whites/blacks/grays stay close to original
-  sky: 0.9,
-  plant: 0.75,
+  skin: 0.35, // subtle temperature-only adjustment
+  neutral: 0.5, // whites/blacks/grays shift a bit but stay believable
+  sky: 0.95,
+  plant: 0.85,
   background: 1.0,
-  foreground: 0.6,
+  foreground: 0.75,
 };
 
 function isSkinTone(h: number, s: number, l: number): boolean {
@@ -38,7 +38,7 @@ function isSkyLike(h: number, s: number, l: number, normY: number): boolean {
 }
 
 function isNeutralTone(s: number, l: number): boolean {
-  return s < 0.08 || l < 0.06 || l > 0.96;
+  return s < 0.04 || l < 0.04 || l > 0.98;
 }
 
 export interface RegionMap {
