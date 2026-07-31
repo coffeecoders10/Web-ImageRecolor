@@ -1,25 +1,165 @@
 .page {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
-  min-height: 100dvh;
-  background-color: var(--page);
-}
-
-.main {
-  flex: 1;
-  display: flex;
-  min-height: 0;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 20px 32px;
+  gap: 14px;
   overflow: hidden;
 }
 
-@media (max-width: 900px) {
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoMark {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.instruction {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.errorBanner {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--error-bg);
+  color: var(--error);
+  font-size: 13px;
+  border: 1px solid var(--error);
+}
+
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 20px;
+  min-height: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.columnTitle {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.emptyHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  counter-reset: step;
+  padding: 20px;
+}
+
+.stepList li {
+  counter-increment: step;
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepList li::before {
+  content: counter(step);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.progressBar {
+  height: 2px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent));
+  background-size: 200% 100%;
+  animation: shimmer 1.1s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.resultControls {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 960px) {
   .page {
     height: auto;
-    min-height: 100dvh;
+    max-height: none;
+    overflow: visible;
   }
 
-  .main {
+  .workspace {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .column {
     overflow: visible;
   }
 }

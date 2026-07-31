@@ -1,0 +1,45 @@
+.row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.download {
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--text-primary);
+  color: var(--surface);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.download:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.download:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.reset {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.reset:hover {
+  background: var(--panel-bg-hover);
+}
